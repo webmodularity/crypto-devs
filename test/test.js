@@ -16,7 +16,7 @@ describe("Crypto Devs", function () {
   describe("Minting", function () {
     it("Should mint a new CryptoDev NFT for the first 2 test accounts (on invite list)", async function () {
       for (let i = 0;i < 2;i++) {
-        const mintTx = await cryptoDevsDeployed.connect(addresses[i]).mint();
+        const mintTx = await cryptoDevsDeployed.connect(addresses[i]).mint("ipfs_url");
         await mintTx.wait();
         expect(await cryptoDevsDeployed.balanceOf(addresses[i].address)).to.equal(1);
       }
@@ -30,7 +30,7 @@ describe("Crypto Devs", function () {
       const publicTx = await cryptoDevsDeployed.connect(addresses[0]).allowPublicMinting(true);
       await publicTx.wait();
       for (let i = 2;i < 5;i++) {
-        const mintTx = await cryptoDevsDeployed.connect(addresses[i]).mint();
+        const mintTx = await cryptoDevsDeployed.connect(addresses[i]).mint("ipfs_url");
         await mintTx.wait();
         expect(await cryptoDevsDeployed.balanceOf(addresses[i].address)).to.equal(1);
       }

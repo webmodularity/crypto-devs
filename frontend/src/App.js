@@ -1,60 +1,25 @@
-import logo from './logo.svg';
 import React from "react";
-import './App.css';
-import useWeb3Modal from "./hooks/useWeb3Modal";
-import { Body, Button, Header, Image, Link } from "./components";
-
-function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
-  return (
-      <Button
-          onClick={() => {
-            if (!provider) {
-              loadWeb3Modal();
-            } else {
-              logoutOfWeb3Modal();
-            }
-          }}
-      >
-        {!provider ? "Connect Wallet" : "Disconnect Wallet"}
-      </Button>
-  );
-}
+import {
+    Box,
+    VStack,
+    Grid
+} from '@chakra-ui/react';
+import { ColorModeSwitcher } from './components/ColorModeSwitcher';
+import CryptoDevForm from "./components/CryptoDevForm";
 
 function App() {
-  const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
+    return (
 
-  return (
-      <div>
-        <Header>
-          <WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} logoutOfWeb3Modal={logoutOfWeb3Modal} />
-        </Header>
-        <Body>
-        </Body>
-      </div>
-  );
-}
+            <Box textAlign="center" fontSize="xl">
+                <Grid minH="100vh" p={3}>
+                    <ColorModeSwitcher justifySelf="flex-end" />
+                    <VStack spacing={8}>
+                        <CryptoDevForm />
+                    </VStack>
+                </Grid>
+            </Box>
 
-/**
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    );
 }
-**/
 
 export default App;
