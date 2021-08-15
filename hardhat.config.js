@@ -1,5 +1,4 @@
 require("@nomiclabs/hardhat-waffle");
-require('hardhat-abi-exporter');
 require("dotenv").config();
 
 // You need to export an object to set up your config
@@ -13,19 +12,7 @@ module.exports = {
   networks: {
     rinkeby: {
       url: process.env.INFURA_URL,
-      accounts: [process.env.PRIVATE_KEY],
-      gas: 10000000
-    },
-    hardhat: {
-      mining: {
-        auto: false,
-        interval: 12000
-      }
+      accounts: [process.env.PRIVATE_KEY]
     }
-  },
-  abiExporter: {
-    path: './frontend/src/contracts',
-    clear: true,
-    flat: true
   }
 };
